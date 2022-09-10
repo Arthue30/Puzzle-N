@@ -49,7 +49,8 @@ public class Menu extends JFrame implements ActionListener{
         tituloJogo.setAlignmentX(CENTER_ALIGNMENT);
 
         iniciar.setAlignmentX(CENTER_ALIGNMENT);
-        iniciar.setMaximumSize(new Dimension(110,40));
+        iniciar.setFont(new Font("",Font.BOLD, 20));
+        iniciar.setMaximumSize(new Dimension(115,40));
         iniciar.addActionListener(this);
 
         puzzleNMaluco.setAlignmentX(CENTER_ALIGNMENT);
@@ -65,8 +66,9 @@ public class Menu extends JFrame implements ActionListener{
         sair.setMaximumSize(new Dimension(100,40));
         sair.addActionListener(this);
 
+        menu.add(Box.createRigidArea(new Dimension(0,10)));
         menu.add(tituloJogo);
-        menu.add(Box.createRigidArea(new Dimension(0,35)));
+        menu.add(Box.createRigidArea(new Dimension(0,20)));
         menu.add(iniciar);
         menu.add(Box.createRigidArea(new Dimension(0,10)));
         menu.add(puzzleNMaluco);

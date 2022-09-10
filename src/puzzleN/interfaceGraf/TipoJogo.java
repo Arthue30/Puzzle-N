@@ -25,7 +25,7 @@ public class TipoJogo extends JPanel implements ActionListener{
             this.player.setNome(JOptionPane.showInputDialog("Qual seu nome?"));
             mainFrame.setSize(700,700);
             mainFrame.setLocationRelativeTo(null);
-            GUIJogoNumero numeroJogo = new GUIJogoNumero(player, this.mainFrame);
+            GUIJogoNumero numeroJogo = new GUIJogoNumero(player, this.mainFrame, this.painelMenu);
             mainFrame.setContentPane(numeroJogo);
             numeroJogo.revalidate();
         }else if(e.getSource()==voltar) {

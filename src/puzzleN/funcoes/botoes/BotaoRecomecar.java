@@ -12,16 +12,18 @@ public class BotaoRecomecar implements ActionListener {
     private JButton recomeco;
     private JFrame mainFrame;
     private Usuario player;
+    private JPanel painelMenu;
 
-    public BotaoRecomecar(JButton recomeco, JFrame mainFrame, Usuario player){
+    public BotaoRecomecar(JButton recomeco, JFrame mainFrame, JPanel painelMenu, Usuario player){
         this.recomeco = recomeco;
         this.mainFrame = mainFrame;
+        this.painelMenu = painelMenu;
         this.player = player;
     }
 
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == recomeco){
-            GUIJogoNumero numeroJogo = new GUIJogoNumero(player, this.mainFrame);
+            GUIJogoNumero numeroJogo = new GUIJogoNumero(player, this.mainFrame, this.painelMenu);
             mainFrame.setContentPane(numeroJogo);
             numeroJogo.revalidate();
         }

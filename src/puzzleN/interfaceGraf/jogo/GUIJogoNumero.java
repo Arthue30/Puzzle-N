@@ -15,16 +15,16 @@ public class GUIJogoNumero extends JPanel{
     private JFrame mainFrame;
     private Usuario player;
     private JLabel tentativas;
+    private JPanel painelMenu;
 
     Color fundo = new Color(253,184,39);
     JButton reset = new JButton("Recomeçar");
-    JButton ajuda = new JButton("Ajuda");
     Font fonteUsuario = new Font("", Font.BOLD, 30);
     Font fonteMovimentos = new Font("",Font.BOLD, 20);
     Font fonteBotao = new Font("", Font.BOLD, 50);
     Font botaoBranco = new Font("", Font.BOLD,0);
 
-    public GUIJogoNumero(Usuario player, JFrame mainFrame){
+    public GUIJogoNumero(Usuario player, JFrame mainFrame, JPanel painelMenu){
 
         this.numerosRandom= new int[tamanho*tamanho];
         this.resposta = new int[tamanho][tamanho];
@@ -32,6 +32,7 @@ public class GUIJogoNumero extends JPanel{
         this.player = player;
         player.setMovimento(0);
         this.mainFrame = mainFrame;
+        this.painelMenu = painelMenu;
 
         Processos processosPlayer = new Processos(this.tamanho);
         this.numerosRandom = processosPlayer.randomResolvivel();
@@ -63,10 +64,9 @@ public class GUIJogoNumero extends JPanel{
         JPanel sul = new JPanel(new FlowLayout());
         sul.setPreferredSize(new Dimension(700,100));
         sul.setBackground(fundo);
-        BotaoRecomecar botaoRecomecar = new BotaoRecomecar(reset, mainFrame, player);
+        BotaoRecomecar botaoRecomecar = new BotaoRecomecar(reset, mainFrame, this.painelMenu, player);
         reset.addActionListener(botaoRecomecar);
         sul.add(reset);
-        sul.add(ajuda);
         add(sul,BorderLayout.SOUTH);
     }
 
@@ -76,7 +76,7 @@ public class GUIJogoNumero extends JPanel{
         meio.setBorder(new EmptyBorder(10,10,0,10));
         this.botoes = new JButton[tamanho][tamanho];
         int k = 0;
-        MovJogo controles = new MovJogo(this.tamanho,this.botoes,this.resposta, this.player, this.tentativas);
+        MovJogo controles = new MovJogo(this.tamanho, this.botoes, this.resposta, this.player, this.tentativas, this.mainFrame, this.painelMenu);
         for(int i = 0; i<botoes.length; i++) {
             for(int j = 0; j<botoes[i].length ;j++) {
                 if(String.valueOf(numerosRandom[k]).equals("-1")) {
