@@ -49,21 +49,21 @@ public class Ganhou extends JPanel implements ActionListener {
     public void painelMeio(){
         JPanel meio = new JPanel();
         meio.setLayout(new BoxLayout(meio, BoxLayout.PAGE_AXIS));
-        meio.setBackground(new Color(255, 255, 255));
+        meio.setBackground(new Color(0, 0, 0));
 
         JLabel dificuldade = new JLabel("DIFICULDADE");
         dificuldade.setFont(fonteTmenor);
-        dificuldade.setForeground(new Color(54,54,54));
+        dificuldade.setForeground(new Color(255, 255, 255));
         dificuldade.setAlignmentX(CENTER_ALIGNMENT);
 
         JLabel tempo = new JLabel("TEMPO");
         tempo.setFont(fonteTmenor);
-        tempo.setForeground(new Color(54,54,54));
+        tempo.setForeground(new Color(255, 255, 255));
         tempo.setAlignmentX(CENTER_ALIGNMENT);
 
         JLabel movimentos = new JLabel(player.getMovimento()+ " movimentos");
         movimentos.setFont(fonteTmenor);
-        movimentos.setForeground(new Color(54,54,54));
+        movimentos.setForeground(new Color(255, 255, 255));
         movimentos.setAlignmentX(CENTER_ALIGNMENT);
 
         meio.add(Box.createRigidArea(new Dimension(0,45)));

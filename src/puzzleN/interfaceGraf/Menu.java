@@ -10,7 +10,6 @@ public class Menu extends JFrame implements ActionListener{
     Font fonteT = new Font("", Font.BOLD,60);
     JButton iniciar = new JButton("Início");
     JButton puzzleNMaluco = new JButton("Maluco");
-    JButton dificuldade = new JButton("Dificuldade");
     JButton ranking = new JButton("Ranking");
     JButton sair = new JButton("Sair");
     JPanel menu = new JPanel();
@@ -56,9 +55,6 @@ public class Menu extends JFrame implements ActionListener{
         puzzleNMaluco.setAlignmentX(CENTER_ALIGNMENT);
         puzzleNMaluco.setMaximumSize(new Dimension(100,40));
 
-        dificuldade.setAlignmentX(CENTER_ALIGNMENT);
-        dificuldade.setMaximumSize(new Dimension(100,40));
-
         ranking.setAlignmentX(CENTER_ALIGNMENT);
         ranking.setMaximumSize(new Dimension(100,40));
 
@@ -68,12 +64,10 @@ public class Menu extends JFrame implements ActionListener{
 
         menu.add(Box.createRigidArea(new Dimension(0,10)));
         menu.add(tituloJogo);
-        menu.add(Box.createRigidArea(new Dimension(0,20)));
+        menu.add(Box.createRigidArea(new Dimension(0,30)));
         menu.add(iniciar);
         menu.add(Box.createRigidArea(new Dimension(0,10)));
         menu.add(puzzleNMaluco);
-        menu.add(Box.createRigidArea(new Dimension(0,10)));
-        menu.add(dificuldade);
         menu.add(Box.createRigidArea(new Dimension(0,10)));
         menu.add(ranking);
         menu.add(Box.createRigidArea(new Dimension(0,10)));

@@ -4,6 +4,7 @@ import java.awt.event.*;
 import java.awt.*;
 
 import puzzleN.funcoes.Usuario;
+import puzzleN.interfaceGraf.jogo.GUIJogoCaractere;
 import puzzleN.interfaceGraf.jogo.GUIJogoNumero;
 
 public class TipoJogo extends JPanel implements ActionListener{
@@ -28,6 +29,13 @@ public class TipoJogo extends JPanel implements ActionListener{
             GUIJogoNumero numeroJogo = new GUIJogoNumero(player, this.mainFrame, this.painelMenu);
             mainFrame.setContentPane(numeroJogo);
             numeroJogo.revalidate();
+        }else if(e.getSource()==caracter){
+            this.player.setNome(JOptionPane.showInputDialog("Qual seu nome?"));
+            mainFrame.setSize(700,700);
+            mainFrame.setLocationRelativeTo(null);
+            GUIJogoCaractere caractereJogo = new GUIJogoCaractere(player, this.mainFrame, this.painelMenu);
+            mainFrame.setContentPane(caractereJogo);
+            caractereJogo.revalidate();
         }else if(e.getSource()==voltar) {
             mainFrame.setContentPane(painelMenu);
             painelMenu.revalidate();
@@ -72,6 +80,7 @@ public class TipoJogo extends JPanel implements ActionListener{
         numero.addActionListener(this);
         centro.add(numero);
         centro.add(Box.createRigidArea(new Dimension(0,10)));
+        caracter.addActionListener(this);
         centro.add(caracter);
         centro.add(Box.createRigidArea(new Dimension(0,10)));
         centro.add(imagem);
