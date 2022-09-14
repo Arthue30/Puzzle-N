@@ -8,17 +8,9 @@ import puzzleN.funcoes.botoes.BotaoRecomecar;
 import puzzleN.funcoes.movimentos.MovJogoNumero;
 
 public class GUIJogoNumero extends GUIJogo{
-
-    private int tamanho = 3;//2 ou 3 ou 4(quando tiver dificuldade será setado lá)
     private int[] numerosRandom;//POSICAO DOS BOTOES
     private int[][] resposta;
     private JButton[][] botoes;
-    private JFrame mainFrame;
-    private Usuario player;
-    private JLabel tentativas;
-    private JPanel painelMenu;
-    private int tipoJogo = 1;
-
     Color fundo = new Color(253,184,39);
     JButton reset = new JButton("Recomeçar");
     Font fonteUsuario = new Font("", Font.BOLD, 30);
@@ -27,58 +19,31 @@ public class GUIJogoNumero extends GUIJogo{
     Font botaoBranco = new Font("", Font.BOLD,0);
 
     public GUIJogoNumero(Usuario player, JFrame mainFrame, JPanel painelMenu){
+        super(player, mainFrame, painelMenu);
 
-        this.numerosRandom= new int[tamanho*tamanho];
-        this.resposta = new int[tamanho][tamanho];
+        this.numerosRandom = new int[super.getPlayer().getNivel()*super.getPlayer().getNivel()];
+        this.resposta = new int[super.getPlayer().getNivel()][super.getPlayer().getNivel()];
 
-        this.player = player;
-        player.setMovimento(0);
-        this.mainFrame = mainFrame;
-        this.painelMenu = painelMenu;
-
-        Processos processosPlayer = new Processos(this.tamanho);
+        Processos processosPlayer = new Processos(super.getPlayer().getNivel());
         this.numerosRandom = processosPlayer.randomResolvivel();
         this.resposta = processosPlayer.gabarito();
-
-        setLayout(new BorderLayout());
-        setVisible(true);
-        parteCima(this.player.getNome(), player.getMovimento());
-        parteMeio();
-        parteBaixo();
     }
 
     public void parteCima(String nome, int mov){
-        JPanel norte = new JPanel();
-        norte.setBackground(fundo);
-        norte.setBorder(new EmptyBorder(10,10,0,0));
-        norte.setLayout(new BoxLayout(norte, BoxLayout.PAGE_AXIS));
-        norte.setPreferredSize(new Dimension(700,100));
-        JLabel usuario = new JLabel(nome);
-        usuario.setFont(fonteUsuario);
-        this.tentativas = new JLabel("Movimentos: " +mov);
-        this.tentativas.setFont(fonteMovimentos);
-        norte.add(usuario);
-        norte.add(this.tentativas);
-        add(norte,BorderLayout.NORTH);
+        super.parteCima(nome, mov);
     }
 
     public void parteBaixo() {
-        JPanel sul = new JPanel(new FlowLayout());
-        sul.setPreferredSize(new Dimension(700,100));
-        sul.setBackground(fundo);
-        BotaoRecomecar botaoRecomecar = new BotaoRecomecar(reset, mainFrame, this.painelMenu, player, this.tipoJogo);
-        reset.addActionListener(botaoRecomecar);
-        sul.add(reset);
-        add(sul,BorderLayout.SOUTH);
+        super.parteBaixo();
     }
 
     public void parteMeio() {
-        JPanel meio = new JPanel(new GridLayout(this.tamanho,this.tamanho));
+        JPanel meio = new JPanel(new GridLayout(super.getPlayer().getNivel(),super.getPlayer().getNivel()));
         meio.setBackground(fundo);
         meio.setBorder(new EmptyBorder(0,100,0,100));
-        this.botoes = new JButton[tamanho][tamanho];
+        this.botoes = new JButton[super.getPlayer().getNivel()][super.getPlayer().getNivel()];
         int k = 0;
-        MovJogoNumero controles = new MovJogoNumero(this.tamanho, this.botoes, this.resposta, this.player, this.tentativas, this.mainFrame, this.painelMenu);
+        MovJogoNumero controles = new MovJogoNumero(this.botoes, this.resposta, super.getPlayer(), super.getTentativas(), super.getMainFrame(), super.getPainelMenu());
         for(int i = 0; i<botoes.length; i++) {
             for(int j = 0; j<botoes[i].length ;j++) {
                 if(String.valueOf(numerosRandom[k]).equals("0")) {

@@ -3,23 +3,22 @@ package puzzleN.funcoes.movimentos;
 import puzzleN.funcoes.Usuario;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public abstract class MovJogo implements ActionListener{
-    private int tamanho;
+    private Usuario player;
     private JButton[][] botao;
 
-    public MovJogo(int tamanho, JButton[][] botao) {
-        this.tamanho = tamanho;
+    public MovJogo(Usuario player, JButton[][] botao) {
+        this.player = player;
         this.botao = botao;
     }
 
 
     public int getIBotao(){
-        for(int i = 0; i<this.tamanho ;i++){
-            for(int j = 0; j<this.tamanho ;j++){
+        for(int i = 0; i<this.player.getNivel() ;i++){
+            for(int j = 0; j<this.player.getNivel() ;j++){
                 if(botao[i][j].getText().equals("0")){
                     return i;
                 }
@@ -28,8 +27,8 @@ public abstract class MovJogo implements ActionListener{
         return 0;
     }
     public int getJBotao(){
-        for(int i = 0; i<this.tamanho ;i++){
-            for(int j = 0; j<this.tamanho ;j++){
+        for(int i = 0; i<this.player.getNivel() ;i++){
+            for(int j = 0; j<this.player.getNivel() ;j++){
                 if(botao[i][j].getText().equals("0")){
                     return j;
                 }
@@ -37,14 +36,12 @@ public abstract class MovJogo implements ActionListener{
         }
         return 0;
     }
-    public void setBotao(JButton[][] botao){
-        this.botao = botao;
-    }
+    public abstract void actionPerformed(ActionEvent e);
 
     public JButton[][] getBotao(){
         return this.botao;
     }
-    public int getTamanho(){
-        return this.tamanho;
+    public Usuario getPlayer(){
+        return this.player;
     }
 }

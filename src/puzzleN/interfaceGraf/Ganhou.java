@@ -51,7 +51,14 @@ public class Ganhou extends JPanel implements ActionListener {
         meio.setLayout(new BoxLayout(meio, BoxLayout.PAGE_AXIS));
         meio.setBackground(new Color(0, 0, 0));
 
-        JLabel dificuldade = new JLabel("DIFICULDADE");
+        JLabel dificuldade = new JLabel();
+        if(player.getNivel()==2){
+            dificuldade.setText("Fácil");
+        } else if (player.getNivel()==3) {
+            dificuldade.setText("Médio");
+        } else {
+            dificuldade.setText("Difícil");
+        }
         dificuldade.setFont(fonteTmenor);
         dificuldade.setForeground(new Color(255, 255, 255));
         dificuldade.setAlignmentX(CENTER_ALIGNMENT);

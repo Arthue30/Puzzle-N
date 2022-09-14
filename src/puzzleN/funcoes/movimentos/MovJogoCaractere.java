@@ -10,48 +10,41 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class MovJogoCaractere extends MovJogo implements ActionListener {
-
-    private int tamanho;
-    private JButton[][] botao;
     private char[][] gabarito;
-    private Usuario player;
     private JLabel movimentos;
     private JFrame mainFrame;
     private JPanel painelMenu;
-    private int linhaBotaoBranco;
-    private int colunaBotaoBranco;
 
     Font fonteBotao = new Font("", Font.BOLD, 50);
     Font botaoBranco = new Font("", Font.BOLD,0);
     Color fundo = new Color(253,184,39);
 
-    public MovJogoCaractere(int tamanho, JButton[][] botao, char[][] gabarito, Usuario player, JLabel movimentos, JFrame mainFrame, JPanel painelMenu) {
-        super(tamanho, botao);
+    public MovJogoCaractere(JButton[][] botao, char[][] gabarito, Usuario player, JLabel movimentos, JFrame mainFrame, JPanel painelMenu) {
+        super(player, botao);
         this.gabarito = gabarito;
-        this.player = player;
         this.movimentos = movimentos;
         this.mainFrame = mainFrame;
         this.painelMenu = painelMenu;
     }
     public void actionPerformed(ActionEvent e) {
-        Processos processo = new Processos(super.getTamanho());
-        for(int i = 0; i<getBotao().length ;i++) { //nesses for daqui ele vai olhar cada botao pra saber qual foi apertado
-            for(int j = 0; j<getBotao()[i].length ;j++) {
-                if(e.getSource()==getBotao()[i][j]) {
+        Processos processo = new Processos(super.getPlayer().getNivel());
+        for(int i = 0; i<super.getBotao().length ;i++) { //nesses for daqui ele vai olhar cada botao pra saber qual foi apertado
+            for(int j = 0; j<super.getBotao()[i].length ;j++) {
+                if(e.getSource()==super.getBotao()[i][j]) {
                     if(((i+1 == super.getIBotao() && j == super.getJBotao()) || (i-1 == super.getIBotao() && j == super.getJBotao()) || (i == super.getIBotao() && j+1 == super.getJBotao()) || (i == super.getIBotao() && j-1 == super.getJBotao()))) { //ele checa se o botao realmente esta na posicao certa para fazer o movimento
-                        getBotao()[super.getIBotao()][super.getJBotao()].setBackground(new Color(84,37,131));
-                        getBotao()[super.getIBotao()][super.getJBotao()].setFont(fonteBotao);
-                        getBotao()[super.getIBotao()][super.getJBotao()].setForeground(Color.white);
-                        getBotao()[super.getIBotao()][super.getJBotao()].setText(getBotao()[i][j].getText());
-                        getBotao()[i][j].setBackground(fundo);
-                        getBotao()[i][j].setFont(botaoBranco);
-                        getBotao()[i][j].setText("0");
-                        player.setMovimento(player.getMovimento() + 1);
-                        this.movimentos.setText("Movimentos: "+player.getMovimento());
-                        if(processo.foiResolvidoChar(getBotao())) {
+                        super.getBotao()[super.getIBotao()][super.getJBotao()].setBackground(new Color(84,37,131));
+                        super.getBotao()[super.getIBotao()][super.getJBotao()].setFont(fonteBotao);
+                        super.getBotao()[super.getIBotao()][super.getJBotao()].setForeground(Color.white);
+                        super.getBotao()[super.getIBotao()][super.getJBotao()].setText(getBotao()[i][j].getText());
+                        super.getBotao()[i][j].setBackground(fundo);
+                        super.getBotao()[i][j].setFont(botaoBranco);
+                        super.getBotao()[i][j].setText("0");
+                        super.getPlayer().setMovimento(super.getPlayer().getMovimento() + 1);
+                        this.movimentos.setText("Movimentos: "+super.getPlayer().getMovimento());
+                        if(processo.foiResolvidoChar(super.getBotao())) {
                             mainFrame.setSize(500,430);
                             mainFrame.setLocationRelativeTo(null);
-                            Ganhou telaGanhou = new Ganhou(this.mainFrame, this.painelMenu, this.player );
+                            Ganhou telaGanhou = new Ganhou(this.mainFrame, this.painelMenu, super.getPlayer() );
                             mainFrame.setContentPane(telaGanhou);
                             telaGanhou.revalidate();
                         }
@@ -59,13 +52,13 @@ public class MovJogoCaractere extends MovJogo implements ActionListener {
                 }
             }
         }
-        for(int i=0; i<getBotao().length ;i++) { //caso o botao estiver na posicao certa ele troca de cor
-            for(int j=0; j<getBotao()[i].length ; j++) {
-                if(String.valueOf(gabarito[i][j]).equals(getBotao()[i][j].getText())) {
-                    if(getBotao()[i][j].getText().equals("0")) { //se o botão que esta na posição correta é o branco então não faz nada
+        for(int i=0; i<super.getBotao().length ;i++) { //caso o botao estiver na posicao certa ele troca de cor
+            for(int j=0; j<super.getBotao()[i].length ; j++) {
+                if(String.valueOf(gabarito[i][j]).equals(super.getBotao()[i][j].getText())) {
+                    if(super.getBotao()[i][j].getText().equals("0")) { //se o botão que esta na posição correta é o branco então não faz nada
                         continue;
                     }else {
-                        getBotao()[i][j].setBackground(new Color(153,50,204));
+                        super.getBotao()[i][j].setBackground(new Color(153,50,204));
                     }
                 }
             }

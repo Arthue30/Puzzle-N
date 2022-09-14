@@ -17,9 +17,9 @@ public class Menu extends JFrame implements ActionListener{
 
     public void actionPerformed(ActionEvent e) {
         if(e.getSource()==iniciar) {
-            TipoJogo tipoJogo = new TipoJogo(menu, this, player);
-            setContentPane(tipoJogo);
-            tipoJogo.revalidate();
+            Dificuldade dificuldade = new Dificuldade(player,this, menu);
+            setContentPane(dificuldade);
+            dificuldade.revalidate();
         }else if(e.getSource()==sair) {
             System.exit(0);
         }

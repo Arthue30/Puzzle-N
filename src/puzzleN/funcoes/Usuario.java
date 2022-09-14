@@ -1,9 +1,14 @@
 package puzzleN.funcoes;
 
+import com.sun.org.apache.xpath.internal.operations.Bool;
+
 public class Usuario {
     private String nome;
     private int movimento;
-    private int dificuldade;
+    private int nivel;
+    private int tipoJogo;
+    private Boolean ajudaAtiva;
+    private Boolean PuzzleNMaluco;
 
     public void setNome(String nome){
         if(nome.isEmpty()) {
@@ -18,12 +23,18 @@ public class Usuario {
         return this.nome;
     }
 
-    public void setDificuldade(int dificuldade) {
-        this.dificuldade = dificuldade;
+    public void setNivel(int dificuldade) {
+        this.nivel = dificuldade;
     }
 
-    public int getDificuldade() {
-        return this.dificuldade;
+    public int getNivel() {
+        return this.nivel;
+    }
+    public void setTipoJogo(int tipoJogo){
+        this.tipoJogo = tipoJogo;
+    }
+    public int getTipoJogo(){
+        return this.tipoJogo;
     }
 
     public void setMovimento(int movimento){
@@ -32,5 +43,17 @@ public class Usuario {
 
     public int getMovimento(){
         return this.movimento;
+    }
+    public void setAjudaAtiva(Boolean ativo){
+        this.ajudaAtiva = ativo;
+    }
+    public Boolean getAjudaAtiva(){
+        return this.ajudaAtiva;
+    }
+    public void setPuzzleNMaluco(Boolean puzzleNMaluco) {
+        this.PuzzleNMaluco = puzzleNMaluco;
+    }
+    public Boolean getPuzzleNMaluco(){
+        return this.PuzzleNMaluco;
     }
 }
