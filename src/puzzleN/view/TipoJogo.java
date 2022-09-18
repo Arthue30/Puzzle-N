@@ -1,10 +1,11 @@
-package puzzleN.interfaceGraf;
+package puzzleN.view;
 import javax.swing.*;
 import java.awt.event.*;
 import java.awt.*;
 
-import puzzleN.funcoes.Usuario;
-import puzzleN.interfaceGraf.jogo.*;
+import puzzleN.model.NomeDeUsuarioException;
+import puzzleN.model.Usuario;
+import puzzleN.view.jogo.*;
 
 public class TipoJogo extends JPanel implements ActionListener{
 
@@ -21,39 +22,43 @@ public class TipoJogo extends JPanel implements ActionListener{
     private JFrame mainFrame;
 
     public void actionPerformed(ActionEvent e) {
-        if(e.getSource()==numero) {
-            this.player.setNome(JOptionPane.showInputDialog("Qual seu nome?"));
+        if (e.getSource()==numero || e.getSource()==caracter || e.getSource()==imagem){
+            try{
+                this.player.setNome(JOptionPane.showInputDialog("Qual seu nome?"));
+            } catch(NomeDeUsuarioException x) {
+                JOptionPane.showMessageDialog(null,x.getMessage());
+            }
+        }
+        if(e.getSource()==numero && this.player.getNome() != null) {
             this.player.setTipoJogo(1);
             mainFrame.setSize(700,700);
             mainFrame.setLocationRelativeTo(null);
             GUIJogo numeroJogo = new GUIJogoNumero(this.player, this.mainFrame, this.painelMenu);
             mainFrame.setContentPane(numeroJogo);
-            numeroJogo.revalidate();
-            numeroJogo.parteCima(this.player.getNome(), this.player.getMovimento());
+            numeroJogo.parteCima(this.player);
             numeroJogo.parteMeio();
             numeroJogo.parteBaixo();
-        }else if(e.getSource()==caracter){
-            this.player.setNome(JOptionPane.showInputDialog("Qual seu nome?"));
+            numeroJogo.revalidate();
+        }else if(e.getSource()==caracter && this.player.getNome() != null){
             this.player.setTipoJogo(2);
             mainFrame.setSize(700,700);
             mainFrame.setLocationRelativeTo(null);
             GUIJogo caractereJogo = new GUIJogoCaractere(this.player, this.mainFrame, this.painelMenu);
             mainFrame.setContentPane(caractereJogo);
-            caractereJogo.revalidate();
-            caractereJogo.parteCima(this.player.getNome(), this.player.getMovimento());
+            caractereJogo.parteCima(this.player);
             caractereJogo.parteMeio();
             caractereJogo.parteBaixo();
-        }else if(e.getSource()==imagem){
-            this.player.setNome(JOptionPane.showInputDialog("Qual seu nome?"));
+            caractereJogo.revalidate();
+        }else if(e.getSource()==imagem && this.player.getNome() != null){
             this.player.setTipoJogo(3);
             mainFrame.setSize(700,700);
             mainFrame.setLocationRelativeTo(null);
             GUIJogo imagemJogo = new GUIJogoImagem(this.player, this.mainFrame, this.painelMenu);
             mainFrame.setContentPane(imagemJogo);
-            imagemJogo.revalidate();
-            imagemJogo.parteCima(this.player.getNome(), this.player.getMovimento());
+            imagemJogo.parteCima(this.player);
             imagemJogo.parteMeio();
             imagemJogo.parteBaixo();
+            imagemJogo.revalidate();
         }else if(e.getSource()==voltar) {
             mainFrame.setContentPane(painelDificuldade);
             painelDificuldade.revalidate();

@@ -1,6 +1,6 @@
-package puzzleN.interfaceGraf;
+package puzzleN.view;
 
-import puzzleN.funcoes.*;
+import puzzleN.model.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -11,6 +11,7 @@ public class Ganhou extends JPanel implements ActionListener {
     private Usuario player;
     private JFrame mainFrame;
     private JPanel painelMenu;
+    private JLabel puzzleMaluco;
 
     JButton voltarMenu = new JButton("Voltar ao início");
     Color fundo = new Color(253,184,39);
@@ -50,11 +51,21 @@ public class Ganhou extends JPanel implements ActionListener {
         JPanel meio = new JPanel();
         meio.setLayout(new BoxLayout(meio, BoxLayout.PAGE_AXIS));
         meio.setBackground(new Color(0, 0, 0));
-
         JLabel dificuldade = new JLabel();
-        if(player.getNivel()==2){
+        if (this.player.getPuzzleNMaluco()){
+            if (this.player.getRandomMaluco() <= 0.3){
+                this.puzzleMaluco = new JLabel("Maluquice leve");
+            } else if ((this.player.getRandomMaluco() > 0.3) && (this.player.getRandomMaluco() <= 0.6)) {
+                this.puzzleMaluco = new JLabel("Maluquice média");
+            } else if ((this.player.getRandomMaluco() > 0.6) && (this.player.getRandomMaluco() <= 0.9)){
+                this.puzzleMaluco = new JLabel("Maluquice forte");
+            } else {
+                this.puzzleMaluco = new JLabel("Maluquice EXTREMA");
+            }
+        }
+        if(this.player.getNivel()==2){
             dificuldade.setText("Fácil");
-        } else if (player.getNivel()==3) {
+        } else if (this.player.getNivel()==3) {
             dificuldade.setText("Médio");
         } else {
             dificuldade.setText("Difícil");
@@ -63,7 +74,7 @@ public class Ganhou extends JPanel implements ActionListener {
         dificuldade.setForeground(new Color(255, 255, 255));
         dificuldade.setAlignmentX(CENTER_ALIGNMENT);
 
-        JLabel tempo = new JLabel("TEMPO");
+        JLabel tempo = new JLabel(player.getTempo());
         tempo.setFont(fonteTmenor);
         tempo.setForeground(new Color(255, 255, 255));
         tempo.setAlignmentX(CENTER_ALIGNMENT);
@@ -73,7 +84,16 @@ public class Ganhou extends JPanel implements ActionListener {
         movimentos.setForeground(new Color(255, 255, 255));
         movimentos.setAlignmentX(CENTER_ALIGNMENT);
 
-        meio.add(Box.createRigidArea(new Dimension(0,45)));
+        if (this.player.getPuzzleNMaluco()){
+            meio.add(Box.createRigidArea(new Dimension(0,25)));
+            this.puzzleMaluco.setFont(fonteTmenor);
+            this.puzzleMaluco.setForeground(new Color(255, 255, 255));
+            this.puzzleMaluco.setAlignmentX(CENTER_ALIGNMENT);
+            meio.add(this.puzzleMaluco);
+            meio.add(Box.createRigidArea(new Dimension(0,15)));
+        } else {
+            meio.add(Box.createRigidArea(new Dimension(0,45)));
+        }
         meio.add(dificuldade);
         meio.add(Box.createRigidArea(new Dimension(0,15)));
         meio.add(tempo);
@@ -110,6 +130,7 @@ public class Ganhou extends JPanel implements ActionListener {
     }
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == voltarMenu){
+            mainFrame.setTitle("Puzzle-N");
             mainFrame.setContentPane(painelMenu);
             painelMenu.revalidate();
         }

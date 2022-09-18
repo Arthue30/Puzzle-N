@@ -1,11 +1,11 @@
-package puzzleN.interfaceGraf.jogo;
+package puzzleN.view.jogo;
 import javax.swing.*;
 import javax.swing.border.*;
 import java.awt.*;
 
-import puzzleN.funcoes.*;
-import puzzleN.funcoes.botoes.*;
-import puzzleN.funcoes.movimentos.*;
+import puzzleN.model.*;
+import puzzleN.controller.botoes.*;
+import puzzleN.controller.movimentos.*;
 
 public class GUIJogoImagem extends GUIJogo{
     private int[] numerosRandom;//POSICAO DOS BOTOES
@@ -25,8 +25,8 @@ public class GUIJogoImagem extends GUIJogo{
         this.numerosRandom = processosPlayer.randomResolvivel();
         this.resposta = processosPlayer.gabarito();
     }
-    public void parteCima(String nome, int mov) {
-        super.parteCima(nome, mov);
+    public void parteCima(Usuario player) {
+        super.parteCima(player);
     }
 
     public void parteBaixo() {
@@ -42,7 +42,7 @@ public class GUIJogoImagem extends GUIJogo{
         meio.setBorder(new EmptyBorder(0,100,0,100));
         this.botoes = new JButton[super.getPlayer().getNivel()][super.getPlayer().getNivel()];
         int k = 0;
-        MovJogo controles = new MovJogoImagem(this.botoes, this.resposta, super.getPlayer(), super.getTentativas(), super.getMainFrame(), super.getPainelMenu());
+        MovJogo controles = new MovJogoImagem(this.botoes, this.resposta, super.getPlayer(), super.getTentativas(), super.getCronometro(), super.getMainFrame(), super.getPainelMenu());
         for(int i = 0; i<botoes.length; i++) {
             for(int j = 0; j<botoes[i].length ;j++) {
                 if(String.valueOf(numerosRandom[k]).equals("0")) {

@@ -1,7 +1,7 @@
-package puzzleN.funcoes.botoes;
+package puzzleN.controller.botoes;
 
-import puzzleN.funcoes.Usuario;
-import puzzleN.interfaceGraf.jogo.*;
+import puzzleN.model.Usuario;
+import puzzleN.view.jogo.*;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -27,21 +27,21 @@ public class BotaoRecomecar implements ActionListener {
                 GUIJogo numeroJogo = new GUIJogoNumero(player, this.mainFrame, this.painelMenu);
                 mainFrame.setContentPane(numeroJogo);
                 numeroJogo.revalidate();
-                numeroJogo.parteCima(this.player.getNome(), this.player.getMovimento());
+                numeroJogo.parteCima(this.player);
                 numeroJogo.parteMeio();
                 numeroJogo.parteBaixo();
             } else if (player.getTipoJogo() == 2) {
                 GUIJogo caractereJogo = new GUIJogoCaractere(player, this.mainFrame, this.painelMenu);
                 mainFrame.setContentPane(caractereJogo);
                 caractereJogo.revalidate();
-                caractereJogo.parteCima(this.player.getNome(), this.player.getMovimento());
+                caractereJogo.parteCima(this.player);
                 caractereJogo.parteMeio();
                 caractereJogo.parteBaixo();
             } else {
                 GUIJogo imagemJogo = new GUIJogoImagem(this.player, this.mainFrame, this.painelMenu);
                 mainFrame.setContentPane(imagemJogo);
                 imagemJogo.revalidate();
-                imagemJogo.parteCima(this.player.getNome(), this.player.getMovimento());
+                imagemJogo.parteCima(this.player);
                 imagemJogo.parteMeio();
                 imagemJogo.parteBaixo();
             }

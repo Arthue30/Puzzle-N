@@ -1,6 +1,6 @@
-package puzzleN.interfaceGraf;
+package puzzleN.view;
 import javax.swing.*;
-import puzzleN.funcoes.*;
+import puzzleN.model.*;
 
 import java.awt.event.*;
 import java.awt.*;
@@ -9,7 +9,6 @@ public class Menu extends JFrame implements ActionListener{
     Color fundo = new Color(253,184,39);
     Font fonteT = new Font("", Font.BOLD,60);
     JButton iniciar = new JButton("Início");
-    JButton puzzleNMaluco = new JButton("Maluco");
     JButton ranking = new JButton("Ranking");
     JButton sair = new JButton("Sair");
     JPanel menu = new JPanel();
@@ -17,16 +16,26 @@ public class Menu extends JFrame implements ActionListener{
 
     public void actionPerformed(ActionEvent e) {
         if(e.getSource()==iniciar) {
-            Dificuldade dificuldade = new Dificuldade(player,this, menu);
-            setContentPane(dificuldade);
-            dificuldade.revalidate();
+            int n = JOptionPane.showConfirmDialog(null, "Gostaria de jogar o modo 'puzzle-N maluco'?", "MALUQUICE", JOptionPane.YES_NO_OPTION);
+            if (n==0){
+                setTitle("O PATRÃO FICOU MALUCO");
+                player.setPuzzleNMaluco(true);
+                Dificuldade dificuldade = new Dificuldade(player,this, menu);
+                setContentPane(dificuldade);
+                dificuldade.revalidate();
+            }if (n==1){
+                player.setPuzzleNMaluco(false);
+                Dificuldade dificuldade = new Dificuldade(player,this, menu);
+                setContentPane(dificuldade);
+                dificuldade.revalidate();
+            }
         }else if(e.getSource()==sair) {
             System.exit(0);
         }
     }
 
-    public Menu(Usuario player){
-        this.player = player;
+    public Menu(){
+        this.player = new Usuario();
         setTitle("Puzzle-N");
         setSize(500,430);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -52,9 +61,6 @@ public class Menu extends JFrame implements ActionListener{
         iniciar.setMaximumSize(new Dimension(115,40));
         iniciar.addActionListener(this);
 
-        puzzleNMaluco.setAlignmentX(CENTER_ALIGNMENT);
-        puzzleNMaluco.setMaximumSize(new Dimension(100,40));
-
         ranking.setAlignmentX(CENTER_ALIGNMENT);
         ranking.setMaximumSize(new Dimension(100,40));
 
@@ -64,10 +70,8 @@ public class Menu extends JFrame implements ActionListener{
 
         menu.add(Box.createRigidArea(new Dimension(0,10)));
         menu.add(tituloJogo);
-        menu.add(Box.createRigidArea(new Dimension(0,30)));
+        menu.add(Box.createRigidArea(new Dimension(0,50)));
         menu.add(iniciar);
-        menu.add(Box.createRigidArea(new Dimension(0,10)));
-        menu.add(puzzleNMaluco);
         menu.add(Box.createRigidArea(new Dimension(0,10)));
         menu.add(ranking);
         menu.add(Box.createRigidArea(new Dimension(0,10)));

@@ -1,10 +1,9 @@
 package puzzleN;
 
-import puzzleN.funcoes.*;
-import puzzleN.interfaceGraf.Menu;
+import puzzleN.view.Menu;
 
 public class JogoMain {
     public static void main(String[] args) {
-        Menu novoJogo = new Menu(new Usuario());
+        Menu novoJogo = new Menu();
     }
 }

@@ -1,38 +1,35 @@
-package puzzleN.interfaceGraf.jogo;
+package puzzleN.view.jogo;
 import javax.swing.*;
 import javax.swing.border.*;
 import java.awt.*;
 
-import puzzleN.funcoes.*;
-import puzzleN.funcoes.botoes.BotaoRecomecar;
-import puzzleN.funcoes.movimentos.MovJogoNumero;
+import puzzleN.model.*;
+import puzzleN.controller.movimentos.*;
 
-public class GUIJogoNumero extends GUIJogo{
-    private int[] numerosRandom;//POSICAO DOS BOTOES
-    private int[][] resposta;
+public class GUIJogoCaractere extends GUIJogo{
+
+    private char[] charRandom;//POSICAO DOS BOTOES
+    private char[][] resposta;
     private JButton[][] botoes;
+
+
     Color fundo = new Color(253,184,39);
-    JButton reset = new JButton("Recomeçar");
-    Font fonteUsuario = new Font("", Font.BOLD, 30);
-    Font fonteMovimentos = new Font("",Font.BOLD, 20);
     Font fonteBotao = new Font("", Font.BOLD, 50);
     Font botaoBranco = new Font("", Font.BOLD,0);
 
-    public GUIJogoNumero(Usuario player, JFrame mainFrame, JPanel painelMenu){
+    public GUIJogoCaractere(Usuario player, JFrame mainFrame, JPanel painelMenu){
         super(player, mainFrame, painelMenu);
 
-        this.numerosRandom = new int[super.getPlayer().getNivel()*super.getPlayer().getNivel()];
-        this.resposta = new int[super.getPlayer().getNivel()][super.getPlayer().getNivel()];
+        this.charRandom= new char[super.getPlayer().getNivel()*super.getPlayer().getNivel()];
+        this.resposta = new char[super.getPlayer().getNivel()][super.getPlayer().getNivel()];
 
         Processos processosPlayer = new Processos(super.getPlayer().getNivel());
-        this.numerosRandom = processosPlayer.randomResolvivel();
-        this.resposta = processosPlayer.gabarito();
+        this.charRandom = processosPlayer.randomResolvivelChar();
+        this.resposta = processosPlayer.gabaritoChar();
     }
-
-    public void parteCima(String nome, int mov){
-        super.parteCima(nome, mov);
+    public void parteCima(Usuario player) {
+        super.parteCima(player);
     }
-
     public void parteBaixo() {
         super.parteBaixo();
     }
@@ -43,15 +40,15 @@ public class GUIJogoNumero extends GUIJogo{
         meio.setBorder(new EmptyBorder(0,100,0,100));
         this.botoes = new JButton[super.getPlayer().getNivel()][super.getPlayer().getNivel()];
         int k = 0;
-        MovJogoNumero controles = new MovJogoNumero(this.botoes, this.resposta, super.getPlayer(), super.getTentativas(), super.getMainFrame(), super.getPainelMenu());
+        MovJogoCaractere controles = new MovJogoCaractere(this.botoes, this.resposta, super.getPlayer(), super.getTentativas(), super.getCronometro(), super.getMainFrame(), super.getPainelMenu());
         for(int i = 0; i<botoes.length; i++) {
             for(int j = 0; j<botoes[i].length ;j++) {
-                if(String.valueOf(numerosRandom[k]).equals("0")) {
+                if(String.valueOf(charRandom[k]).equals("0")) {
                     botoes[i][j] = new JButton();
                     botoes[i][j].setBackground(fundo);
                     botoes[i][j].addActionListener(controles);
                     botoes[i][j].setFont(botaoBranco);
-                    botoes[i][j].setText(String.valueOf(numerosRandom[k]));
+                    botoes[i][j].setText(String.valueOf(charRandom[k]));
                     meio.add(botoes[i][j]);
                 } else {
                     botoes[i][j] = new JButton();
@@ -59,7 +56,7 @@ public class GUIJogoNumero extends GUIJogo{
                     botoes[i][j].setBackground(new Color(84,37,131));
                     botoes[i][j].setFont(fonteBotao);
                     botoes[i][j].setForeground(Color.white);
-                    botoes[i][j].setText(String.valueOf(numerosRandom[k]));
+                    botoes[i][j].setText(String.valueOf(charRandom[k]));
                     if(String.valueOf(resposta[i][j]).equals(botoes[i][j].getText())) {
                         botoes[i][j].setBackground(new Color(153,50,204));
                     }

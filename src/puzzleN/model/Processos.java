@@ -1,7 +1,6 @@
-package puzzleN.funcoes;
+package puzzleN.model;
 
 import javax.swing.*;
-import java.util.Arrays;
 import java.util.Random;
 
 public class Processos { //Essa classe depois herdará de usuarios

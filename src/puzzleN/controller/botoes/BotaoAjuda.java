@@ -1,5 +1,5 @@
-package puzzleN.funcoes.botoes;
-import puzzleN.funcoes.Usuario;
+package puzzleN.controller.botoes;
+import puzzleN.model.Usuario;
 
 import java.awt.*;
 import java.awt.event.*;

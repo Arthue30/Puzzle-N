@@ -1,6 +1,6 @@
-package puzzleN.interfaceGraf;
+package puzzleN.view;
 
-import puzzleN.funcoes.Usuario;
+import puzzleN.model.Usuario;
 
 import javax.swing.*;
 import java.awt.*;
