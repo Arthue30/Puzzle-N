@@ -83,6 +83,9 @@ public class Dificuldade extends JPanel implements ActionListener {
             mainFrame.setContentPane(tipoJogo);
             tipoJogo.revalidate();
         }else {
+            if (this.player.getPuzzleNMaluco()){
+                mainFrame.setTitle("Puzzle-N");
+            }
             mainFrame.setContentPane(painelMenu);
             painelMenu.revalidate();
         }

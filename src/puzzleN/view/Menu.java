@@ -18,7 +18,7 @@ public class Menu extends JFrame implements ActionListener{
         if(e.getSource()==iniciar) {
             int n = JOptionPane.showConfirmDialog(null, "Gostaria de jogar o modo 'puzzle-N maluco'?", "MALUQUICE", JOptionPane.YES_NO_OPTION);
             if (n==0){
-                setTitle("O PATRÃO FICOU MALUCO");
+                setTitle("Puzzle-N MALUCO");
                 player.setPuzzleNMaluco(true);
                 Dificuldade dificuldade = new Dificuldade(player,this, menu);
                 setContentPane(dificuldade);

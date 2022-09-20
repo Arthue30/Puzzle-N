@@ -14,7 +14,9 @@ public class BotaoAjuda implements ActionListener{
         this.ajudaAtivo = ajuda;
         this.player = player;
     }
+
     public void actionPerformed(ActionEvent e) {
+
         if(e.getSource()==this.ajudaAtivo){
             if(player.getAjudaAtiva()){
                 for(int i = 0; i< player.getNivel() ;i++){
@@ -23,6 +25,7 @@ public class BotaoAjuda implements ActionListener{
                     }
                 }
                 player.setAjudaAtiva(false);
+
             }else{
                 for(int i = 0; i<player.getNivel() ;i++){
                     for(int j = 0; j<player.getNivel() ;j++){
@@ -35,6 +38,7 @@ public class BotaoAjuda implements ActionListener{
                 }
                 player.setAjudaAtiva(true);
             }
+
         }
     }
 }

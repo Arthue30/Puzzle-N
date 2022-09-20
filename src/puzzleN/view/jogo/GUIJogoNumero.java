@@ -11,9 +11,6 @@ public class GUIJogoNumero extends GUIJogo{
     private int[][] resposta;
     private JButton[][] botoes;
     Color fundo = new Color(253,184,39);
-    JButton reset = new JButton("Recomeçar");
-    Font fonteUsuario = new Font("", Font.BOLD, 30);
-    Font fonteMovimentos = new Font("",Font.BOLD, 20);
     Font fonteBotao = new Font("", Font.BOLD, 50);
     Font botaoBranco = new Font("", Font.BOLD,0);
 

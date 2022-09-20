@@ -45,7 +45,6 @@ public class BotaoRecomecar implements ActionListener {
                 imagemJogo.parteMeio();
                 imagemJogo.parteBaixo();
             }
-
         }
     }
 }

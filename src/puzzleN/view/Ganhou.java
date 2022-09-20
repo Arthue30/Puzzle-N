@@ -53,11 +53,11 @@ public class Ganhou extends JPanel implements ActionListener {
         meio.setBackground(new Color(0, 0, 0));
         JLabel dificuldade = new JLabel();
         if (this.player.getPuzzleNMaluco()){
-            if (this.player.getRandomMaluco() <= 0.3){
+            if (this.player.getRandomMaluco() <= 0.03){
                 this.puzzleMaluco = new JLabel("Maluquice leve");
-            } else if ((this.player.getRandomMaluco() > 0.3) && (this.player.getRandomMaluco() <= 0.6)) {
+            } else if ((this.player.getRandomMaluco() > 0.03) && (this.player.getRandomMaluco() <= 0.06)) {
                 this.puzzleMaluco = new JLabel("Maluquice média");
-            } else if ((this.player.getRandomMaluco() > 0.6) && (this.player.getRandomMaluco() <= 0.9)){
+            } else if ((this.player.getRandomMaluco() > 0.06) && (this.player.getRandomMaluco() <= 0.09)){
                 this.puzzleMaluco = new JLabel("Maluquice forte");
             } else {
                 this.puzzleMaluco = new JLabel("Maluquice EXTREMA");

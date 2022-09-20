@@ -26,7 +26,7 @@ public class TipoJogo extends JPanel implements ActionListener{
             try{
                 this.player.setNome(JOptionPane.showInputDialog("Qual seu nome?"));
             } catch(NomeDeUsuarioException x) {
-                JOptionPane.showMessageDialog(null,x.getMessage());
+                JOptionPane.showMessageDialog(null,x.getMessage(), "Usuário incorreto", JOptionPane.WARNING_MESSAGE);
             }
         }
         if(e.getSource()==numero && this.player.getNome() != null) {
